@@ -23,10 +23,20 @@ class User extends Authenticatable
      *
      * @var string[]
      */
+
+
     protected $fillable = [
         'name',
         'email',
         'password',
+    ];
+
+
+    protected $with = [
+        'posts'
+    ];
+    protected $withCount = [
+        'posts'
     ];
 
     /**
@@ -58,4 +68,10 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
