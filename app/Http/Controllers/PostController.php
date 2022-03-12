@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Traits\UploadImageTrait;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
+    use UploadImageTrait;
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
+        dd(Post::whereHas('images')->with('images')->get());
         //
     }
 
@@ -25,6 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
+        return view('backend.blog.create');
         //
     }
 
@@ -36,7 +41,17 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        DB::transaction(function () use ($request) {
+
+
+
+            $post = auth()->user()->posts()->create(['name' => $request->name, 'description' => $request->description, 'user_id' => auth()->id()]);
+
+            $file = $request->image;
+            $post->images()->create(['path' => $this->uploadImage($file, 'blog', 1000, 500)]);
+        });
+
+        return redirect(route('posts.index'));
     }
 
     /**

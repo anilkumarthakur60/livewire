@@ -2,13 +2,16 @@
 
 namespace App\Models;
 
-use App\Traits\BelongsToManyPost;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Image extends Model
 {
-    use HasFactory, BelongsToManyPost;
+    use HasFactory;
 
     protected $guarded = ['id'];
+    public function imageable()
+    {
+        return $this->morphTo();
+    }
 }
