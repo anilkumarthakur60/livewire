@@ -24,7 +24,7 @@ class CategoryFactory extends Factory
         return [
             'name' => $this->faker->unique()->name,
             'slug' => Str::slug($this->faker->unique()->name),
-            'parent_id' => Category::factory()
+            // 'parent_id' => Category::factory()->id
 
         ];
     }

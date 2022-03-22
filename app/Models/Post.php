@@ -4,13 +4,14 @@ namespace App\Models;
 
 use App\Traits\BelongsToUser;
 use App\Traits\PolyMorphicImage;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
     use HasFactory, BelongsToUser;
-    use PolyMorphicImage;
+    use PolyMorphicImage, Sluggable;
     // protected $with = [$this->user()];
 
     protected $guarded = ['id'];
@@ -34,5 +35,13 @@ class Post extends Model
     public function name(): string
     {
         return $this->name;
+    }
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 }
