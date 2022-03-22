@@ -18,7 +18,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        dd(Post::whereHas('images')->with('images')->get());
+        dd(Post::whereHas('images')->with(['images' => function ($query) {
+            return  $query->select(['id', 'path']);
+        }])->get());
         //
     }
 
@@ -42,11 +44,7 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         DB::transaction(function () use ($request) {
-
-
-
             $post = auth()->user()->posts()->create(['name' => $request->name, 'description' => $request->description, 'user_id' => auth()->id()]);
-
             $file = $request->image;
             $post->images()->create(['path' => $this->uploadImage($file, 'blog', 1000, 500)]);
         });

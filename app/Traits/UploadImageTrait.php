@@ -12,8 +12,8 @@ trait UploadImageTrait
 {
     public function uploadImage(UploadedFile $file, $folder = null, $width = 600, $height = 600)
     {
-        // $image = $file->storeAs('public/' . $folder, date('YmdHis') . "-" . $file->getClientOriginalName());
-        $image = $file->storeAs('public/' . $folder, date('YmdHis') . "-" . $file->getClientOriginalName());
+        $image = $file->storeAs('images/' . $folder, date('YmdHis') . "-" . $file->getClientOriginalName());
+
 
         Image::make(storage_path() . '/app/' . $image)
             ->fit($width, $height, function ($constraint) {

@@ -24,4 +24,15 @@ class Post extends Model
     {
         return $this->belongsToMany(Category::class);
     }
+
+
+
+    public function id(): int
+    {
+        return $this->id;
+    }
+    public function name(): string
+    {
+        return $this->name;
+    }
 }

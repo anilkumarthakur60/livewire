@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -16,14 +17,18 @@ class PostFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+
+    protected $model = Post::class;
     public function definition()
     {
         return [
 
             'name' => $this->faker->unique()->name,
             'slug' => Str::slug($this->faker->unique()->name),
-            'description' => $this->faker->paragraph(),
-            'user_id' => User::factory()
+            'body' => $this->faker->paragraph(),
+            'user_id' => User::factory(),
+
         ];
     }
 }
