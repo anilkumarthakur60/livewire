@@ -15,7 +15,14 @@ class Post extends Model
     // protected $with = [$this->user()];
 
     protected $guarded = ['id'];
-
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
 
     public function tags()
     {
@@ -35,16 +42,5 @@ class Post extends Model
     public function name(): string
     {
         return $this->name;
-    }
-
-
-
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'name'
-            ]
-        ];
     }
 }
