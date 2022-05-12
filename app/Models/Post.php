@@ -36,6 +36,9 @@ class Post extends Model
     {
         return $this->name;
     }
+
+
+
     public function sluggable(): array
     {
         return [
