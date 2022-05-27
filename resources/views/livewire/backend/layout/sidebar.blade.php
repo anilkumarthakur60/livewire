@@ -19,8 +19,8 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link  {{ request()->routeIs('categories.index')?' ':'collapsed'}}"
-                href="{{ route('categories.index') }}">
+            <a class="nav-link  {{ request()->routeIs('posts.index')?' ':'collapsed'}}"
+                href="{{ route('posts.index') }}">
                 <i class="bi bi-menu-button-wide"></i><span>Posts</span>
             </a>
         </li>

@@ -14,7 +14,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::with('posts.tags', 'posts.categories')->get();
+        // return User::with('posts.tags', 'posts.categories')->get();
+
+        return view('livewire.backend.user.user-index');
         //
     }
 

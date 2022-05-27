@@ -18,10 +18,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        dd(Post::whereHas('images')->with(['images' => function ($query) {
-            return  $query->select(['id', 'path']);
-        }])->get());
-        //
+
+        return view('livewire.backend.post.post-index');
     }
 
     /**

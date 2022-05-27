@@ -15,6 +15,7 @@ class TagController extends Controller
      */
     public function index()
     {
+        return view('livewire.backend.tag.tag-index');
         //
     }
 
