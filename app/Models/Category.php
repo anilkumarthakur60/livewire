@@ -6,6 +6,7 @@ use App\Traits\BelongsToManyPost;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Category extends Model
 {
@@ -16,7 +17,7 @@ class Category extends Model
 
     public function childrens()
     {
-        return $this->hasMany(Category::class, 'parent_id')->with('childrens');
+        return $this->hasMany(Category::class, 'category_id')->with('childrens');
     }
     public function sluggable(): array
     {
